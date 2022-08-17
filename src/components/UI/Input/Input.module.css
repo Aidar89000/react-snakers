@@ -1,0 +1,32 @@
+.Input{
+    box-sizing: border-box;
+
+    width: 285px;
+    height: 45px;
+    border: 1px solid #d6d6d6;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    margin-right: 2%;
+}
+
+.Input input{
+    width: 90%;
+    height: 100%;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+   
+    color: #4b4b4b;
+}
+
+.Input img{
+    margin-left: 15px;
+    width: 16px;
+    height: 16px;
+}
+
+
