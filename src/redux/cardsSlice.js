@@ -4,73 +4,79 @@ const cardsSlice= createSlice({
     name: 'cards',
 
     initialState:{
+
+        fireBaseKey: 'AIzaSyBZPnN6ll-scUHeEVFYUlX2T9LJztBH8S4',
+        realtimeDBUrl: 'https://react-sneakers-99574-default-rtdb.asia-southeast1.firebasedatabase.app',
+
         cards: [
-        {
-                img: '/sneakers/1.jpg',
+            {
+                    img: '/sneakers/1.jpg',
+                    model: 'Nike Blazer Mid Suede',
+                    info: 'Мужские кроссовки',
+                    price: 12_999,
+                    id: 1,
+                    btnOrderImg: '/icons/btn-plus.svg',
+                    btnFavoriteImg: '/icons/heart.svg',
+                    favorite: false,
+                    ordered: false
+            },
+            {
+                  img: '/sneakers/2.jpg',
+                  model: 'Nike Air Max 270',
+                  info: 'Мужские кроссовки',
+                  price: 15_600,
+                  id: 2,
+                  btnOrderImg: '/icons/btn-plus.svg',
+                  btnFavoriteImg: '/icons/heart.svg',
+                  favorite: false,
+                  ordered: false,
+                  
+            },
+            {
+                img: '/sneakers/3.jpg',
                 model: 'Nike Blazer Mid Suede',
                 info: 'Мужские кроссовки',
-                price: 12_999,
-                id: 1,
+                price: 8_499,
+                id: 3,
                 btnOrderImg: '/icons/btn-plus.svg',
                 btnFavoriteImg: '/icons/heart.svg',
                 favorite: false,
                 ordered: false
-        },
-        {
-              img: '/sneakers/2.jpg',
-              model: 'Nike Air Max 270',
-              info: 'Мужские кроссовки',
-              price: 15_600,
-              id: 2,
+            },
+            {
+              img: '/sneakers/4.jpg',
+              model: 'Boku Future Rider',
+              info: 'Кроссовки Puma X Aka',
+              price: 8_999,
+              id: 4,
               btnOrderImg: '/icons/btn-plus.svg',
               btnFavoriteImg: '/icons/heart.svg',
               favorite: false,
-              ordered: false,
-              
-        },
-        {
-            img: '/sneakers/3.jpg',
-            model: 'Nike Blazer Mid Suede',
-            info: 'Мужские кроссовки',
-            price: 8_499,
-            id: 3,
-            btnOrderImg: '/icons/btn-plus.svg',
-            btnFavoriteImg: '/icons/heart.svg',
-            favorite: false,
-            ordered: false
-        },
-        {
-          img: '/sneakers/4.jpg',
-          model: 'Boku Future Rider',
-          info: 'Кроссовки Puma X Aka',
-          price: 8_999,
-          id: 4,
-          btnOrderImg: '/icons/btn-plus.svg',
-          btnFavoriteImg: '/icons/heart.svg',
-          favorite: false,
-          ordered: false
-        },
-        {
-          img: '/sneakers/5.jpg',
-          model: 'Under Armour Curry 8',
-          info: 'Кроссовки Puma X Aka',
-          price: 15_199,
-          id: 5,
-          btnOrderImg: '/icons/btn-plus.svg',
-          btnFavoriteImg: '/icons/heart.svg',
-          favorite: false,
-          ordered: false
-        },
-        
-        ],
+              ordered: false
+            },
+            {
+              img: '/sneakers/5.jpg',
+              model: 'Under Armour Curry 8',
+              info: 'Кроссовки Puma X Aka',
+              price: 15_199,
+              id: 5,
+              btnOrderImg: '/icons/btn-plus.svg',
+              btnFavoriteImg: '/icons/heart.svg',
+              favorite: false,
+              ordered: false
+            },
+            
+            ],
 
     },
 
     reducers:{
 
         changeOrderState(state,action){
+
             const card = state.cards[action.payload.id]
             card.ordered = !card.ordered
+            
             if (card.ordered){
                 card.btnOrderImg = '/icons/btn-checked.svg'
             }
@@ -80,6 +86,7 @@ const cardsSlice= createSlice({
         },
 
         changeFavoriteState(state,action){
+
             const card = state.cards[action.payload.id]
             
             card.favorite = !card.favorite
@@ -95,6 +102,6 @@ const cardsSlice= createSlice({
     }
 })
 
-export const {changeOrderState, changeFavoriteState} = cardsSlice.actions
+export const {changeOrderState, changeFavoriteState,renderCards} = cardsSlice.actions
 
 export default cardsSlice.reducer

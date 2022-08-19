@@ -2,18 +2,34 @@
 import './Card.scss'
 
 import MiniButton from '../UI/MiniButton/MiniButton'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { changeOrderState } from '../../redux/cardsSlice'
 import { changeFavoriteState } from '../../redux/cardsSlice'
 import { addCardToCart, sumTotalPrice } from '../../redux/cartSlice'
+import React from "react"
 
-const Card = props =>{
+
+function Card(props){
 
     const dispatch = useDispatch()
-    const cards = useSelector(state=>state.cardsState.cards)
 
     let btnFavoriteClasses = 'Card__favorite'
 
+    const addOrderToCart = ()=>{
+
+            dispatch(changeOrderState({id:props.id-1}))
+            dispatch(addCardToCart(
+            {img: props.img,
+            model: props.model,
+            info: props.info,
+            price: props.price,
+            id: props.id,
+            ordered: props.ordered
+        }))
+
+            dispatch(sumTotalPrice())    
+
+    }
     if (props.favorite){
         btnFavoriteClasses+=' active'
     }
@@ -47,20 +63,7 @@ const Card = props =>{
 
                     <span className={'Card__btn-plus'}>
                         <MiniButton img={props.btnOrderImg}
-                        onClick={()=>{
-
-                        dispatch(changeOrderState({id:props.id-1}))
-                        dispatch(addCardToCart({img: props.img,
-                        model: props.model,
-                        info: props.info,
-                        price: props.price,
-                        id: props.id,
-                        ordered: props.ordered
-                    }))
-                        dispatch(sumTotalPrice())
-
-                        }
-                        } />
+                        onClick={addOrderToCart} />
                     </span>
                     
                 </div>
@@ -70,4 +73,4 @@ const Card = props =>{
         )
 
 }
-export default Card
+export default React.memo(Card)
